@@ -1,8 +1,6 @@
 
 # Back-end Nodes.js com uso de Express
 
-Projeto 
-
 ## Objetivo
 
 O objetivo deste projeto é desenvolver uma API back-end em Node.js com uso do Express. A API deverá implementar as seguintes rotas:
