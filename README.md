@@ -8,6 +8,14 @@ O objetivo deste projeto é desenvolver uma API back-end em Node.js com uso do E
 * GET /users - Retorna uma lista de todos os usuários
 * GET /cards - Retorna uma lista de todos os cards
 * GET /users/:id - Retorna um usuário específico pelo ID
+* POST /users - Cria um novo usuário
+* POST /cards - Cria um novo card
+* DELETE /cards/:id - Deleta um card específico pelo ID
+* DELETE /cards/:cardId/likes - Remove o like de um card específico pelo ID
+* PUT /cards/:cardId/likes - Adiciona o like em um card específico pelo ID
+* PATCH /users/me/:id - Atualiza os dados de um usuário específico pelo ID
+* PATCH /users/me/:id/avatar - Atualiza o avatar de um usuário específico pelo ID
+
 ## Documentação da API
 
 #### Retorna todos os itens
@@ -38,6 +46,82 @@ O objetivo deste projeto é desenvolver uma API back-end em Node.js com uso do E
 | :---------- | :------------------------------------------ |
 | `id`      | Retorna um usuário específico pelo ID |
 
+#### Cria um novo item
+
+```http
+  POST /users
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `N/A`      | Cria um novo usuário |
+
+* Corpo da Requisição para criar Usuário
+
+| Campo   | Tipo   | Descrição |
+| :------- | :---- | :------- |
+| `name`   | `string`   | Nome do usuário |
+| `about`   | `string`   | Descrição do usuário |
+| `avatar`   | `string`   | Imagem do avatar com http ou https válido |
+
+```http
+  POST /cards
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `N/A`      | Cria um novo card |
+
+* Corpo da Requisição para criar Card
+
+| Campo   | Tipo   | Descrição |
+| :------- | :---- | :------- |
+| `name`   | `string`   | Nome do card |
+| `link`   | `string`   | Imagem do card com http ou https válido |
+
+#### Deleta um item
+
+```http
+  DELETE /cards/:id
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `id`      | Deleta um card específico pelo ID |
+
+#### Atualiza um item
+
+```http
+  PUT /cards/:cardId/likes
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `cardId`      | Adiciona o like em um card específico pelo ID |
+
+```http
+  DELETE /cards/:cardId/likes
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `cardId`      | Remove o like de um card específico pelo ID |
+
+```http
+  PATCH /users/me/:id
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `id`      | Atualiza os dados de um usuário específico pelo ID |
+
+```http
+  PATCH /users/me/:id/avatar
+```
+
+| Parâmetro   | Descrição                                   |
+| :---------- | :------------------------------------------ |
+| `id`      | Atualiza o avatar de um usuário específico pelo ID |
 
 ## Stacks utilizadas
 
