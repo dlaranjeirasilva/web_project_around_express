@@ -115,6 +115,13 @@ O objetivo deste projeto é desenvolver uma API back-end em Node.js com uso do E
 | :---------- | :------------------------------------------ |
 | `id`      | Atualiza os dados de um usuário específico pelo ID |
 
+* Corpo da Requisição para atualizar dados do usuário
+
+| Campo   | Tipo   | Descrição |
+| :------- | :---- | :------- |
+| `name`   | `string`   | Nome do usuário |
+| `about`   | `string`   | Descrição do usuário |
+
 ```http
   PATCH /users/me/:id/avatar
 ```
@@ -122,6 +129,12 @@ O objetivo deste projeto é desenvolver uma API back-end em Node.js com uso do E
 | Parâmetro   | Descrição                                   |
 | :---------- | :------------------------------------------ |
 | `id`      | Atualiza o avatar de um usuário específico pelo ID |
+
+* Corpo da Requisição para atualizar dados do usuário
+
+| Campo   | Tipo   | Descrição |
+| :------- | :---- | :------- |
+| `avatar`   | `string`   | Imagem do avatar com http ou https válido |
 
 ## Stacks utilizadas
 
