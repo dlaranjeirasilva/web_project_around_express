@@ -16,9 +16,7 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
     validate: {
-      validator: function(v) {
-        return /^(https?:\/\/)?(www\.)?[a-zA-Z0-9._~:\/?%#[\]@!$&'()*+,;=,-]+#?$/.test(v);
-      },
+      validator: (v) => /^(https?:\/\/)?(www\.)?[a-zA-Z0-9._~:/?%#[\]@!$&'()*+,;=,-]+#?$/.test(v),
       message: 'URL inválida',
     },
     required: true,

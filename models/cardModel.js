@@ -10,9 +10,7 @@ const cardSchema = new mongoose.Schema({
   link: {
     type: String,
     validate: {
-      validator: function(v) {
-        return /^(https?:\/\/)?(www\.)?[a-zA-Z0-9._~:\/?%#[\]@!$&'()*+,;=,-]+#?$/.test(v);
-      },
+      validator: (v) => /^(https?:\/\/)?(www\.)?[a-zA-Z0-9._~:/?%#[\]@!$&'()*+,;=,-]+#?$/.test(v),
       message: 'URL inválida',
     },
     required: true,
@@ -30,7 +28,7 @@ const cardSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-  }
+  },
 }, { versionKey: false });
 
 module.exports = mongoose.model('card', cardSchema);
