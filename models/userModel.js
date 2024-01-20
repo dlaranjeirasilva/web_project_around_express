@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
       message: 'URL inválida',
     },
     required: true,
-  }
-});
+  },
+}, { versionKey: false });
 
 module.exports = mongoose.model('user', userSchema);

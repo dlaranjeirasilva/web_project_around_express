@@ -1,6 +1,6 @@
-const User = require('../models/user');
+const User = require('../models/userModel');
 
-module.exports.getUsers = (req, res) => {
+const getUsers = (req, res) => {
   User.find({})
   .then(users => res.send({ data: users }))
   .catch((err) => {
@@ -8,7 +8,7 @@ module.exports.getUsers = (req, res) => {
   });
 };
 
-module.exports.getUserById = (req, res) => {
+const getUserById = (req, res) => {
   User.findById(req.params.id)
   .orFail(() => {
     const error = new Error(`Nenhum usuário encontrado com id ${req.params.id}`)
@@ -32,7 +32,7 @@ module.exports.getUserById = (req, res) => {
   });
 };
 
-module.exports.createUser = (req, res) => {
+const createUser = (req, res) => {
   const { name, about, avatar } = req.body;
 
   User.create({ name, about, avatar })
@@ -45,7 +45,7 @@ module.exports.createUser = (req, res) => {
   });
 };
 
-module.exports.updateProfile = (req, res) => {
+const updateProfile = (req, res) => {
   User.findByIdAndUpdate(
     req.params.id,
     {
@@ -60,7 +60,7 @@ module.exports.updateProfile = (req, res) => {
   });
 };
 
-module.exports.updateAvatar = (req, res) => {
+const updateAvatar = (req, res) => {
   User.findByIdAndUpdate(
     req.params.id,
     {
@@ -72,4 +72,12 @@ module.exports.updateAvatar = (req, res) => {
   .catch((err) => {
     res.status(500).send({message: `Error: ${err}`})
   });
-};
+}
+
+module.exports = {
+  getUsers,
+  getUserById,
+  createUser,
+  updateAvatar,
+  updateProfile,
+}
