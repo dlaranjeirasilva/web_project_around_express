@@ -1,10 +1,14 @@
-const User = require('../models/userModel');
+const User = require('../models/user');
+
+const ERROR_CODE = 400;
+const NOT_FOUND_CODE = 404;
+const SERVER_ERROR_CODE = 500;
 
 const getUsers = (req, res) => {
   User.find({})
     .then((users) => res.send({ data: users }))
     .catch((err) => {
-      res.status(500).send({ message: `Error: ${err}` });
+      res.status(SERVER_ERROR_CODE).send({ message: `Error: ${err}` });
     });
 };
 
@@ -13,13 +17,12 @@ const getUserById = (req, res) => {
     .orFail(() => {
       const error = new Error(`Nenhum usuário encontrado com id ${req.params.id}`);
       error.name = 'ObjectNotFoundError';
-      error.httpStatusCode = 404;
       throw error;
     })
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'CastError') {
-        return res.status(400).send(
+        return res.status(ERROR_CODE).send(
           {
             description: `O campo ID possui 24 caracteres, foram enviados ${req.params.id.length}`,
             message: `${err}`,
@@ -27,9 +30,9 @@ const getUserById = (req, res) => {
         );
       }
       if (err.name === 'ObjectNotFoundError') {
-        return res.status(err.httpStatusCode).send({ message: `${err}` });
+        return res.status(NOT_FOUND_CODE).send({ message: `${err}` });
       }
-      return res.status(500).send({ message: `Error: ${err}` });
+      return res.status(SERVER_ERROR_CODE).send({ message: `Error: ${err}` });
     });
 };
 
@@ -40,9 +43,9 @@ const createUser = (req, res) => {
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return res.status(400).send({ message: `Error: ${err}` });
+        return res.status(ERROR_CODE).send({ message: `Error: ${err}` });
       }
-      return res.status(500).send({ message: `Error: ${err}` });
+      return res.status(SERVER_ERROR_CODE).send({ message: `Error: ${err}` });
     });
 };
 
@@ -57,7 +60,7 @@ const updateProfile = (req, res) => {
   )
     .then((user) => res.send({ data: user }))
     .catch((err) => {
-      res.status(500).send({ message: `Error: ${err}` });
+      res.status(SERVER_ERROR_CODE).send({ message: `Error: ${err}` });
     });
 };
 
@@ -71,7 +74,7 @@ const updateAvatar = (req, res) => {
   )
     .then((user) => res.send({ data: user }))
     .catch((err) => {
-      res.status(500).send({ message: `Error: ${err}` });
+      res.status(SERVER_ERROR_CODE).send({ message: `Error: ${err}` });
     });
 };
 
